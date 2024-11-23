@@ -12,7 +12,7 @@ ReactDOM.render(
     domain={domain}
     clientId={clientId}
     authorizationParams={{
-      redirect_uri: window.location.origin,
+      redirect_uri: "https://online-dictionary-frontend.onrender.com",
     }}
   >
     <App />
