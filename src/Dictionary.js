@@ -16,21 +16,20 @@ const Dictionary = () => {
 
   const containerRef = useRef(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
-        setShowHistory(false);
-        setSuggestions([]);
+   useEffect(() => {
+    const processRedirect = async () => {
+      if (window.location.search.includes("code=") || window.location.search.includes("state=")) {
+        try {
+          await handleRedirectCallback(); // Xử lý callback Auth0
+          window.history.replaceState({}, document.title, window.location.pathname); // Xóa query parameters
+        } catch (error) {
+          console.error("Error handling redirect callback:", error);
+        }
       }
     };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
+    processRedirect();
+  }, [handleRedirectCallback]);
+  
   useEffect(() => {
     if (query) {
       fetchSuggestions(query);
