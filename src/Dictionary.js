@@ -5,6 +5,7 @@ import axios from "axios";
 const PIXABAY_API_KEY = "47145142-c0f64889c5b39f04c9aba5a7a";
 
 const Dictionary = () => {
+  const { isAuthenticated } = useAuth0();
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [selectedWord, setSelectedWord] = useState(null);
@@ -105,6 +106,130 @@ const Dictionary = () => {
     setSuggestions([]);
   };
 
+  if (!isAuthenticated) {
+    return (
+      <div
+        style={{
+          textAlign: "center",
+          padding: "50px",
+          borderRadius: "20px",
+          background: "linear-gradient(135deg, #FFDEE9, #B5FFFC)", // Gradient tươi sáng hơn
+          boxShadow: "0 12px 25px rgba(0, 0, 0, 0.2)",
+          color: "#3E3E3E",
+          maxWidth: "650px",
+          margin: "auto",
+          marginTop: "100px",
+          animation: "fadeInDown 1s ease-in-out",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        {/* Hiệu ứng background */}
+        <div
+          style={{
+            position: "absolute",
+            top: "-50px",
+            right: "-50px",
+            width: "150px",
+            height: "150px",
+            backgroundColor: "#FFD1DC",
+            borderRadius: "50%",
+            filter: "blur(50px)",
+            zIndex: "-1",
+          }}
+        ></div>
+        <div
+          style={{
+            position: "absolute",
+            bottom: "-50px",
+            left: "-50px",
+            width: "200px",
+            height: "200px",
+            backgroundColor: "#C1EFFF",
+            borderRadius: "50%",
+            filter: "blur(70px)",
+            zIndex: "-1",
+          }}
+        ></div>
+  
+        <h2
+          style={{
+            fontSize: "30px",
+            fontWeight: "bold",
+            marginBottom: "15px",
+            textShadow: "0 3px 6px rgba(0, 0, 0, 0.25)",
+          }}
+        >
+          Truy cập giới hạn!
+        </h2>
+        <p
+          style={{
+            fontSize: "18px",
+            lineHeight: "1.6",
+            color: "#555555",
+            fontWeight: "500",
+            marginBottom: "30px",
+          }}
+        >
+          Đăng nhập ngay để khám phá tất cả các tính năng tuyệt vời mà ứng dụng từ điển của chúng tôi mang lại. 
+          Hãy nhấn vào nút đăng nhập ở phía trên!
+        </p>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "20px",
+            animation: "bounceIn 1.5s ease",
+          }}
+        >
+          <img
+            src="https://img.icons8.com/clouds/120/lock.png"
+            alt="Lock Icon"
+            style={{
+              width: "100px",
+              height: "100px",
+            }}
+          />
+        </div>
+        {/* Hiệu ứng động */}
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            zIndex: "-2",
+            width: "300px",
+            height: "300px",
+            borderRadius: "50%",
+            background: "radial-gradient(circle, #FFDEE9, #FF9A9E)",
+            opacity: "0.2",
+            filter: "blur(120px)",
+          }}
+        ></div>
+      </div>
+    );
+  }
+  
+  
+  // const formatDefinition = (definition) => {
+  //   const lines = definition.split('\n');
+  //   return lines
+  //     .map((line) => {
+  //       if (line.startsWith('@')) {
+  //         return `<div style="margin-left: 0px; font-weight: bold;">${line}</div>`;
+  //       } else if (line.startsWith('*')) {
+  //         return `<div style="margin-left: 20px;">${line}</div>`;
+  //       } else if (line.startsWith('-')) {
+  //         return `<div style="margin-left: 40px;">${line}</div>`;
+  //       } else if (line.startsWith('+') || line.startsWith('=') || line.startsWith('!')) {
+  //         return `<div style="margin-left: 60px;">${line}</div>`;
+  //       }
+  //       return `<div>${line}</div>`;
+  //     })
+  //     .join('');
+  // };
 const formatContentWithLimit = (data) => {
     if (!data || typeof data !== 'string' || data.trim() === '') {
         console.error('Invalid input data:', data);
