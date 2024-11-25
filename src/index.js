@@ -7,7 +7,7 @@ import './index.css';
 const domain = "dev-krykox1jnhghdidl.us.auth0.com"; // Thay bằng domain từ Auth0
 const clientId = "1F3M1rAcwZGBMP1rOYsvPd4uYrLNf5H5"; // Thay bằng clientId từ Auth0
 const audience = "https://dictionary-backend-ocuq.onrender.com"; // URL API backend của bạn
-const redirectUri = "https://online-dictionary-frontend.onrender.com"; // URL ứng dụng frontend của bạn
+const redirectUri = "window.location.origin"; // URL ứng dụng frontend của bạn
 
 ReactDOM.render(
   <Auth0Provider
