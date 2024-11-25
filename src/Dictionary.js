@@ -44,7 +44,7 @@ const Dictionary = () => {
 
   const fetchSuggestions = async (query) => {
     try {
-      const response = await axios.get(`http://localhost:5000/search?q=${query}`);
+      const response = await axios.get(`https://dictionary-backend-ocuq.onrender.com/search?q=${query}`);
       setSuggestions(response.data);
     } catch (error) {
       console.error("Error fetching suggestions:", error);
@@ -77,7 +77,7 @@ const Dictionary = () => {
     if (query.trim() === "") return;
 
     try {
-      const response = await axios.get(`http://localhost:5000/search?q=${query}`);
+      const response = await axios.get(`https://dictionary-backend-ocuq.onrender.com/search?q=${query}`);
       if (response.data.length > 0) {
         const exactMatch = response.data.find(
           (word) => word.word.toLowerCase() === query.toLowerCase()
@@ -230,7 +230,7 @@ const Dictionary = () => {
   //     })
   //     .join('');
   // };
-  const formatContentWithLimit = (data) => {
+const formatContentWithLimit = (data) => {
     if (!data || typeof data !== 'string' || data.trim() === '') {
         console.error('Invalid input data:', data);
         return [];
@@ -252,7 +252,7 @@ const Dictionary = () => {
 
             const isCategory = categories.some((cat) => line.includes(cat));
             if (isCategory) {
-                currentBlock.push(line.replace('@', '').split(':')[0].trim());
+                currentBlock.push(line.replace('@', '').split(':').map(part => part.trim()).join(': '));
             } else {
                 const parts = line.replace('@', '').split(' ');
                 if (parts.length > 1) {
@@ -399,7 +399,7 @@ const DisplayLimitedContent = ({ data }) => {
   const handleSpeak = () => {
     if (selectedWord) {
       const utterance = new SpeechSynthesisUtterance(selectedWord.word);
-      utterance.lang = 'en-US';
+      utterance.lang = 'en-GB';
       speechSynthesis.speak(utterance);
     }
   };
