@@ -5,7 +5,7 @@ import App from './App';
 import './index.css';
 
 const domain = "dev-krykox1jnhghdidl.us.auth0.com"; // Thay bằng domain từ Auth0
-const clientId = "0YngN4e9thEDZsP3YWX463yLH5OAem1e"; // Thay bằng clientId từ Auth0
+const clientId = "1F3M1rAcwZGBMP1rOYsvPd4uYrLNf5H5"; // Thay bằng clientId từ Auth0
 
 ReactDOM.render(
   <Auth0Provider
