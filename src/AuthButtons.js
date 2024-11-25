@@ -4,27 +4,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 const AuthButtons = () => {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
 
-  // CSS cho Avatar
-  const avatarStyle = {
-    width: "40px",
-    height: "40px",
-    borderRadius: "50%",
-    border: "2px solid #4A90E2",
-    objectFit: "cover",
-    cursor: "pointer",
-    transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  };
-
-  // CSS cho nút
-  const buttonStyle = {
-    padding: "10px 20px",
-    fontSize: "14px",
-    border: "none",
-    borderRadius: "8px",
-    cursor: "pointer",
-    transition: "background-color 0.3s ease, transform 0.2s ease",
-  };
-
   return (
     <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
       {isAuthenticated ? (
@@ -33,7 +12,15 @@ const AuthButtons = () => {
           <img
             src={user.picture}
             alt="User Avatar"
-            style={avatarStyle}
+            style={{
+              width: "40px",
+              height: "40px",
+              borderRadius: "50%",
+              border: "2px solid #4A90E2",
+              objectFit: "cover",
+              cursor: "pointer",
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+            }}
             title={user.name}
             onMouseOver={(e) => {
               e.target.style.transform = "scale(1.1)";
@@ -60,13 +47,18 @@ const AuthButtons = () => {
               {user.email}
             </p>
           </div>
-          {/* Nút Đăng xuất */}
+          {/* Nút đăng xuất */}
           <button
             onClick={() => logout({ returnTo: window.location.origin })}
             style={{
-              ...buttonStyle,
               backgroundColor: "#FF6B6B",
               color: "#fff",
+              padding: "10px 20px",
+              fontSize: "14px",
+              border: "none",
+              borderRadius: "8px",
+              cursor: "pointer",
+              transition: "background-color 0.3s ease, transform 0.2s ease",
             }}
             onMouseOver={(e) => {
               e.target.style.backgroundColor = "#E04444";
@@ -84,18 +76,22 @@ const AuthButtons = () => {
         <button
           onClick={() => loginWithRedirect()}
           style={{
-            ...buttonStyle,
             display: "flex",
             alignItems: "center",
             gap: "8px",
-            backgroundColor: "#4A90E2",
+            backgroundColor: "#4A90E2", // Màu gradient hoặc sáng hơn
             color: "#fff",
+            padding: "10px 20px",
+            fontSize: "16px",
             fontWeight: "bold",
-            borderRadius: "25px",
-            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+            border: "none",
+            borderRadius: "25px", // Nút bo tròn
+            cursor: "pointer",
+            transition: "background-color 0.3s ease, transform 0.2s ease",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Đổ bóng nhẹ
           }}
           onMouseOver={(e) => {
-            e.target.style.backgroundColor = "#357ABD";
+            e.target.style.backgroundColor = "#357ABD"; // Màu hover
             e.target.style.transform = "translateY(-2px)";
             e.target.style.boxShadow = "0 6px 12px rgba(0, 0, 0, 0.2)";
           }}
